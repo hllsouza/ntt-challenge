@@ -9,12 +9,13 @@
   "scripts": {
     "api:test": "cd api && npx cypress run",
     "api:open": "cd api && npx cypress open",
-    "api:test:grep": "cd api && npx cypress run --env grepTags=$1",
+    "api:test:grep": "cd api && npx cypress run --env grepTags=",
     "api:test:login": "cd api && npx cypress run --env grepTags=@login-admin",
     "api:test:usuarios": "cd api && npx cypress run --env grepTags=@criar-usuario",
     "api:test:ci": "cd api && npx cypress run --browser electron --headless",
-    "api:clean": "rm -rf api/cypress/reports && mkdir -p api/cypress/reports",
-    "api:test:mochawesome": "cd api && npx cypress run --reporter cypress-mochawesome-reporter --reporter-options reportDir=cypress/reports,overwrite=false,html=true,json=true,reportFilename=index"
+    "api:test:mochawesome": "cd api && npx cypress run --reporter ../../node_modules/mochawesome --reporter-options reportDir=cypress/reports,overwrite=false,html=false,json=true",
+    "api:generate-report": "cd api && npx mochawesome-merge cypress/reports/mochawesome-*.json > cypress/reports/merged.json && npx mochawesome-report-generator -f index -o cypress/reports cypress/reports/merged.json",
+    "api:run-all": "npm run api:test:mochawesome && npm run api:generate-report"
   },
   "keywords": [],
   "author": "",

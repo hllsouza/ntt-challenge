@@ -13,6 +13,7 @@ api/.DS_Store
 .pnp.js
 install-state.gz
 cypress-npm-*.*
-api/cypress/reports/
+api/cypress/reports/*
 **/.DS_Store
 package-lock.json
+
