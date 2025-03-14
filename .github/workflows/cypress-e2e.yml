@@ -7,18 +7,20 @@ on:
 jobs:
   api-tests:
     runs-on: ubuntu-latest
-    env:
-      EMAIL_ADMIN: ${{ secrets.EMAIL_ADMIN }}
-      PASSWORD_ADMIN: ${{ secrets.PASSWORD_ADMIN }}
 
     steps:
       - name: 🛎️ Checkout do código
         uses: actions/checkout@v3
       
-      - name: 🛠️ Instalar Docker Compose  # 🔥 Novo passo para instalar docker-compose
+      - name: 🛠️ Instalar Docker Compose
         run: |
           sudo apt-get update
           sudo apt-get install -y docker-compose
+
+      - name: 📝 Criar arquivo .env para o ambiente
+        run: |
+          echo "EMAIL_ADMIN=${{ secrets.EMAIL_ADMIN }}" >> api/.env
+          echo "PASSWORD_ADMIN=${{ secrets.PASSWORD_ADMIN }}" >> api/.env
 
       - name: 🐳 Configurar Docker e rodar serviços
         run: docker-compose up --build -d
