@@ -33,13 +33,33 @@ jobs:
           install: false
           command: npm run api:test:ci
 
+      - name: ☕ Instalar Java (Requerido pelo Allure)
+        if: always()
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: 🔄 Carregar Histórico do Relatório Allure
+        uses: actions/checkout@v3
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
       - name: 📊 Gerar Relatório Allure
         if: always()
-        run: yarn allure generate --clean
-
-      - name: 📤 Upload do Relatório Allure como Artefato
-        if: always()
-        uses: actions/upload-artifact@v4
+        uses: simple-elf/allure-report-action@v1.7
         with:
-          name: allure-report
-          path: api/allure-report
+          gh_pages: gh-pages
+          allure_history: allure-history
+          allure_results: api/allure-results
+
+      - name: 🚀 Publicar Relatório no GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
