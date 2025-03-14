@@ -57,10 +57,13 @@ jobs:
           allure_results: api/allure-results
 
       - name: 🚀 Publicar Relatório no GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
         if: always()
-        with:
-          github_token: ${{ secrets.GH_PAT }}
-          publish_branch: gh-pages
-          publish_dir: allure-history
-          force_orphan: true
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git clone --single-branch --branch gh-pages https://${{ secrets.GH_PAT }}@github.com/hllsouza/ntt-challenge.git gh-pages
+          cp -r allure-history/* gh-pages/
+          cd gh-pages
+          git add .
+          git commit -m "🔄 Atualizando relatório Allure 🚀" || echo "Nenhuma alteração para commit"
+          git push --force origin gh-pages
