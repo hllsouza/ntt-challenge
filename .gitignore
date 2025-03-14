@@ -2,4 +2,5 @@ node_modules/
 api/.env
 api/cypress/videos/
 api/cypress/screenshots/
+api/.DS_Store
 .DS_Store
