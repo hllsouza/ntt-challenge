@@ -1,0 +1,24 @@
+{
+  "name": "ntt-challenge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "api:test": "cd api && npx cypress run",
+    "api:open": "cd api && npx cypress open",
+    "api:test:grep": "cd api && npx cypress run --env grepTags=$1",
+    "api:test:login": "cd api && npx cypress run --env grepTags=@login-admin",
+    "api:test:usuarios": "cd api && npx cypress run --env grepTags=@criar-usuario",
+    "api:test:ci": "cd api && npx cypress run --browser chrome --headless"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@faker-js/faker": "^9.6.0",
+    "cypress": "^14.1.0",
+    "cypress-grep": "^3.0.4",
+    "cypress-plugin-api": "^2.11.2",
+    "dotenv": "^16.4.7"
+  }
+}
