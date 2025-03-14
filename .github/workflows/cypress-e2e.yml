@@ -33,10 +33,14 @@ jobs:
           install: false
           command: npm run api:run-all
 
+      - name: 📦 Instalar utilitário zip
+        run: apt-get update && apt-get install -y zip
+
       - name: 📦 Compactar Relatório Mochawesome
-        run: |
-          cd api/cypress
-          zip -r reports.zip reports/
+        run: zip -r api/cypress/reports.zip api/cypress/reports/
+
+      - name: 🔍 Verificar se o relatório foi gerado
+        run: ls -lh api/cypress/reports.zip
 
       - name: 📤 Upload do Relatório Mochawesome
         uses: actions/upload-artifact@v4
