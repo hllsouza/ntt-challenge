@@ -7,11 +7,9 @@ api/.DS_Store
 .yarn/*
 !.yarn/releases
 !.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
 .yarnrc.yml
 .pnp.*
 .pnp.js
 install-state.gz
 cypress-npm-*.*
-allure-results/
+api/cypress/reports/
