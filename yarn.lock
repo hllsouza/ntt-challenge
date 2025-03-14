@@ -142,6 +142,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@shelex/allure-js-commons-browser@npm:1.5.0":
+  version: 1.5.0
+  resolution: "@shelex/allure-js-commons-browser@npm:1.5.0"
+  dependencies:
+    uuid: 9.0.1
+  checksum: cbe1171726bb3e6bb5e7b8f4b10c2fd0a5fa8c34dda29c907605a5032683d725874be07aa396525d7861cf724945ffc680d3a11f660ce3fafc03d5a4f63d170a
+  languageName: node
+  linkType: hard
+
+"@shelex/cypress-allure-plugin@npm:^2.40.2":
+  version: 2.40.2
+  resolution: "@shelex/cypress-allure-plugin@npm:2.40.2"
+  dependencies:
+    "@shelex/allure-js-commons-browser": 1.5.0
+    crypto-js: 4.2.0
+    debug: 4.3.4
+    object-inspect: 1.13.1
+    path-browserify: 1.0.1
+    uuid: 9.0.1
+  checksum: c90f65c5a7d380e93222056311cae0869570e95befec1da104ada1d5d22c3dac9dc5b110e22f06b9bf5d20be0df1b79a121f24e17368e21828d42c245f89db99
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:*":
   version: 22.13.10
   resolution: "@types/node@npm:22.13.10"
@@ -299,6 +322,15 @@ __metadata:
     clean-stack: ^2.0.0
     indent-string: ^4.0.0
   checksum: 1101a33f21baa27a2fa8e04b698271e64616b886795fd43c31068c07533c7b3facfcaf4e9e0cab3624bd88f729a592f1c901a1a229c9e490eafce411a8644b79
+  languageName: node
+  linkType: hard
+
+"allure-commandline@npm:^2.33.0":
+  version: 2.33.0
+  resolution: "allure-commandline@npm:2.33.0"
+  bin:
+    allure: bin/allure
+  checksum: ed555ee2defc61659dffcf72732e019f319f4dd7d086498de3a602bf9169c83d883809fe2dac68d654820aba40a602099b7133b31ae8af0d774b8cb3a1a708ff
   languageName: node
   linkType: hard
 
@@ -623,6 +655,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"crypto-js@npm:4.2.0":
+  version: 4.2.0
+  resolution: "crypto-js@npm:4.2.0"
+  checksum: f051666dbc077c8324777f44fbd3aaea2986f198fe85092535130d17026c7c2ccf2d23ee5b29b36f7a4a07312db2fae23c9094b644cc35f7858b1b4fcaf27774
+  languageName: node
+  linkType: hard
+
 "csstype@npm:^3.1.3":
   version: 3.1.3
   resolution: "csstype@npm:3.1.3"
@@ -735,6 +774,18 @@ __metadata:
     supports-color:
       optional: true
   checksum: 2c3352e37d5c46b0d203317cd45ea0e26b2c99f2d9dfec8b128e6ceba90dfb65425f5331bf3020fe9929d7da8c16758e737f4f3bfc0fce6b8b3d503bae03298b
+  languageName: node
+  linkType: hard
+
+"debug@npm:4.3.4":
+  version: 4.3.4
+  resolution: "debug@npm:4.3.4"
+  dependencies:
+    ms: 2.1.2
+  peerDependenciesMeta:
+    supports-color:
+      optional: true
+  checksum: 3dbad3f94ea64f34431a9cbf0bafb61853eda57bff2880036153438f50fb5a84f27683ba0d8e5426bf41a8c6ff03879488120cf5b3a761e77953169c0600a708
   languageName: node
   linkType: hard
 
@@ -1546,12 +1597,21 @@ __metadata:
   resolution: "ntt-challenge@workspace:."
   dependencies:
     "@faker-js/faker": ^9.6.0
+    "@shelex/cypress-allure-plugin": ^2.40.2
+    allure-commandline: ^2.33.0
     cypress: ^14.1.0
     cypress-grep: ^3.0.4
     cypress-plugin-api: ^2.11.2
     dotenv: ^16.4.7
   languageName: unknown
   linkType: soft
+
+"object-inspect@npm:1.13.1":
+  version: 1.13.1
+  resolution: "object-inspect@npm:1.13.1"
+  checksum: 7d9fa9221de3311dcb5c7c307ee5dc011cdd31dc43624b7c184b3840514e118e05ef0002be5388304c416c0eb592feb46e983db12577fc47e47d5752fbbfb61f
+  languageName: node
+  linkType: hard
 
 "object-inspect@npm:^1.13.3":
   version: 1.13.4
@@ -1591,6 +1651,13 @@ __metadata:
   dependencies:
     aggregate-error: ^3.0.0
   checksum: cb0ab21ec0f32ddffd31dfc250e3afa61e103ef43d957cc45497afe37513634589316de4eb88abdfd969fe6410c22c0b93ab24328833b8eb1ccc087fc0442a1c
+  languageName: node
+  linkType: hard
+
+"path-browserify@npm:1.0.1":
+  version: 1.0.1
+  resolution: "path-browserify@npm:1.0.1"
+  checksum: c6d7fa376423fe35b95b2d67990060c3ee304fc815ff0a2dc1c6c3cfaff2bd0d572ee67e18f19d0ea3bbe32e8add2a05021132ac40509416459fffee35200699
   languageName: node
   linkType: hard
 
@@ -2083,6 +2150,15 @@ __metadata:
   version: 4.0.0
   resolution: "untildify@npm:4.0.0"
   checksum: 39ced9c418a74f73f0a56e1ba4634b4d959422dff61f4c72a8e39f60b99380c1b45ed776fbaa0a4101b157e4310d873ad7d114e8534ca02609b4916bb4187fb9
+  languageName: node
+  linkType: hard
+
+"uuid@npm:9.0.1":
+  version: 9.0.1
+  resolution: "uuid@npm:9.0.1"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 39931f6da74e307f51c0fb463dc2462807531dc80760a9bff1e35af4316131b4fc3203d16da60ae33f07fdca5b56f3f1dd662da0c99fea9aaeab2004780cc5f4
   languageName: node
   linkType: hard
 
