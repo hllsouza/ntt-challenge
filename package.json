@@ -1,10 +1,6 @@
 {
   "name": "ntt-challenge",
   "version": "1.0.0",
-  "workspaces": [
-    "api",
-    "web"
-  ],
   "main": "index.js",
   "scripts": {
     "api:test": "cd api && npx cypress run",
