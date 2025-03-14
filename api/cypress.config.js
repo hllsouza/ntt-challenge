@@ -7,6 +7,9 @@ dotenv.config();
 module.exports = defineConfig({
   e2e: {
     baseUrl: "https://serverest.dev",
+    video: false,
+    screenshotOnRunFailure: false,
+    defaultCommandTimeout: 10000,
     setupNodeEvents(on, config) {
       config.env.email_admin = process.env.EMAIL_ADMIN;
       config.env.password_admin = process.env.PASSWORD_ADMIN;

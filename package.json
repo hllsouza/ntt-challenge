@@ -8,7 +8,7 @@
     "api:test:grep": "cd api && npx cypress run --env grepTags=$1",
     "api:test:login": "cd api && npx cypress run --env grepTags=@login-admin",
     "api:test:usuarios": "cd api && npx cypress run --env grepTags=@criar-usuario",
-    "api:test:ci": "cd api && npx cypress run --browser chrome --headless"
+    "api:test:ci": "cd api && npx cypress run --browser electron --headless"
   },
   "keywords": [],
   "author": "",
