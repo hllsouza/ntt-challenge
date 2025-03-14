@@ -23,7 +23,7 @@ jobs:
           echo "EMAIL_ADMIN=${{ secrets.EMAIL_ADMIN }}" > api/.env
           echo "PASSWORD_ADMIN=${{ secrets.PASSWORD_ADMIN }}" >> api/.env
 
-      - name: 🧪 Executar Testes de API (Cypress + Allure)
+      - name: 🧪 Executar Testes de API (Cypress + Mochawesome)
         uses: cypress-io/github-action@v5
         env: 
           EMAIL_ADMIN: ${{ secrets.EMAIL_ADMIN }}
@@ -31,40 +31,16 @@ jobs:
         with:
           browser: electron
           install: false
-          command: npm run api:test:ci
+          command: npm run api:run-all
 
-      - name: ☕ Instalar Java (Requerido pelo Allure)
-        if: always()
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'zulu'
-          java-version: '17'
-
-      - name: 🔄 Carregar Histórico do Relatório Allure
-        uses: actions/checkout@v3
-        if: always()
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
-
-      - name: 📊 Gerar Relatório Allure
-        if: always()
-        uses: simple-elf/allure-report-action@v1.7
-        with:
-          gh_pages: gh-pages
-          allure_history: allure-history
-          allure_results: api/allure-results
-
-      - name: 🚀 Publicar Relatório no GitHub Pages
-        if: always()
+      - name: 📦 Compactar Relatório Mochawesome
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          rm -rf gh-pages
-          git clone --single-branch --branch gh-pages https://${{ secrets.GH_PAT }}@github.com/hllsouza/ntt-challenge.git gh-pages || git init gh-pages
-          cp -r allure-history/* gh-pages/
-          cd gh-pages
-          git add .
-          git commit -m "🔄 Atualizando relatório Allure 🚀" || echo "Nenhuma alteração para commit"
-          git push --force https://${{ secrets.GH_PAT }}@github.com/hllsouza/ntt-challenge.git gh-pages
+          cd api/cypress
+          zip -r reports.zip reports/
+
+      - name: 📤 Upload do Relatório Mochawesome
+        uses: actions/upload-artifact@v4
+        with:
+          name: mochawesome-report
+          path: api/cypress/reports.zip
+          retention-days: 7
