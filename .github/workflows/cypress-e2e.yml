@@ -62,9 +62,9 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           rm -rf gh-pages
-          git clone --single-branch --branch gh-pages https://github.com/hllsouza/ntt-challenge.git gh-pages || git init gh-pages
+          git clone --single-branch --branch gh-pages https://${{ secrets.GH_PAT }}@github.com/hllsouza/ntt-challenge.git gh-pages || git init gh-pages
           cp -r allure-history/* gh-pages/
           cd gh-pages
           git add .
           git commit -m "🔄 Atualizando relatório Allure 🚀" || echo "Nenhuma alteração para commit"
-          git push --force origin gh-pages
+          git push --force https://${{ secrets.GH_PAT }}@github.com/hllsouza/ntt-challenge.git gh-pages
