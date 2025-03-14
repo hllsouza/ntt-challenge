@@ -61,7 +61,8 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git clone --single-branch --branch gh-pages https://${{ secrets.GH_PAT }}@github.com/hllsouza/ntt-challenge.git gh-pages
+          rm -rf gh-pages
+          git clone --single-branch --branch gh-pages https://github.com/hllsouza/ntt-challenge.git gh-pages || git init gh-pages
           cp -r allure-history/* gh-pages/
           cd gh-pages
           git add .
