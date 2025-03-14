@@ -4,3 +4,13 @@ api/cypress/videos/
 api/cypress/screenshots/
 api/.DS_Store
 .DS_Store
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.yarnrc.yml
+.pnp.*
+.pnp.js
+install-state.gz
+cypress-npm-*.*

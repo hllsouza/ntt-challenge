@@ -1,0 +1,6 @@
+node_modules
+api/.env
+api/cypress/videos/
+api/cypress/screenshots/
+.DS_Store
+.git

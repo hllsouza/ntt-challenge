@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  ntt-challenge:
+    build: .
+    container_name: ntt-challenge
+    volumes:
+      - .:/app
+      - /app/node_modules
+    working_dir: /app/api
+    env_file:
+      - ./api/.env
+    environment:
+      - NODE_ENV=development
+    command: ["npx", "cypress", "run"]
