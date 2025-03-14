@@ -36,7 +36,7 @@ jobs:
           docker exec ntt-challenge yarn allure generate --clean
 
       - name: 📤 Upload do Relatório Allure como Artefato
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: allure-report
           path: api/allure-report
