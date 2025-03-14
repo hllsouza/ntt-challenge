@@ -34,7 +34,7 @@ jobs:
           command: npm run api:run-all
 
       - name: 📦 Instalar utilitário zip
-        run: apt-get update && apt-get install -y zip
+        run: sudo apt-get update && sudo apt-get install -y zip
 
       - name: 📦 Compactar Relatório Mochawesome
         run: zip -r api/cypress/reports.zip api/cypress/reports/
