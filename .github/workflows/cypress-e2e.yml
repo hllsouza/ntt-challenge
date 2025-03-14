@@ -1,0 +1,50 @@
+name: Development e2e Api-Web
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  cypress-e2e-api-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛎️ Checkout do código
+        uses: actions/checkout@v3
+
+      - name: 🛠️ Instalar dependências
+        run: yarn install
+
+      - name: 📝 Criar arquivo .env para o ambiente
+        run: |
+          echo "EMAIL_ADMIN=${{ secrets.EMAIL_ADMIN }}" > api/.env
+          echo "PASSWORD_ADMIN=${{ secrets.PASSWORD_ADMIN }}" >> api/.env
+
+      - name: 🧪 Executar Testes de API (Cypress + Mochawesome)
+        uses: cypress-io/github-action@v5
+        env: 
+          EMAIL_ADMIN: ${{ secrets.EMAIL_ADMIN }}
+          PASSWORD_ADMIN: ${{ secrets.PASSWORD_ADMIN }}
+        with:
+          browser: electron
+          install: false
+          command: npm run api:run-all
+
+      - name: 📦 Instalar utilitário zip (se necessário)
+        run: |
+          dpkg -s zip || sudo apt-get update && sudo apt-get install -y zip
+
+      - name: 📦 Compactar Relatório Mochawesome
+        run: |
+          cd api/cypress
+          zip -r ../../mochawesome-report.zip reports/
+
+      - name: 🔍 Verificar se o relatório foi gerado
+        run: ls -lh mochawesome-report.zip
+
+      - name: 📤 Upload do Relatório Mochawesome
+        uses: actions/upload-artifact@v4
+        with:
+          name: mochawesome-report
+          path: mochawesome-report.zip
+          retention-days: 7

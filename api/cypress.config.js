@@ -1,21 +1,31 @@
-const dotenv = require("dotenv");
 const { defineConfig } = require("cypress");
-const registerCypressGrep = require("cypress-grep/src/plugin");
+const path = require("path");
 
-dotenv.config();
+require("dotenv").config({ path: path.resolve(__dirname, ".env") });
 
 module.exports = defineConfig({
+  reporter: "mochawesome",
+  reporterOptions: {
+    reportDir: "api/cypress/reports",
+    overwrite: false,
+    html: false,
+    json: true,
+    charts: true,
+    reportFilename: "mochawesome-[name]",
+    reportPageTitle: "Test Report",
+    embeddedScreenshots: true,
+    inlineAssets: true,
+    saveJson: true
+  },
   e2e: {
     baseUrl: "https://serverest.dev",
+    video: false,
+    screenshotOnRunFailure: true,
+    defaultCommandTimeout: 10000,
     setupNodeEvents(on, config) {
       config.env.email_admin = process.env.EMAIL_ADMIN;
       config.env.password_admin = process.env.PASSWORD_ADMIN;
-
-      registerCypressGrep(config);
       return config;
-    },
-    env: {
-      grepFilterSpecs: true,
     },
   },
 });
