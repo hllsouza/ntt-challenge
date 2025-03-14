@@ -1,4 +1,5 @@
 node_modules/
+api/node_modules/
 api/.env
 api/cypress/videos/
 api/cypress/screenshots/
@@ -13,3 +14,5 @@ api/.DS_Store
 install-state.gz
 cypress-npm-*.*
 api/cypress/reports/
+**/.DS_Store
+package-lock.json
