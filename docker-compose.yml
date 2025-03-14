@@ -12,4 +12,6 @@ services:
       - ./api/.env
     environment:
       - NODE_ENV=development
+    mem_limit: 4g
+    memswap_limit: 4g
     command: ["npx", "cypress", "run"]
