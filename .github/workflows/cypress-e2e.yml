@@ -7,9 +7,6 @@ on:
 jobs:
   cypress-e2e-api-tests:
     runs-on: ubuntu-latest
-    container: 
-      image: cypress/browsers:node18.12.0-chrome103-ff107
-      options: --user 1001
 
     steps:
       - name: 🛎️ Checkout do código
@@ -33,18 +30,21 @@ jobs:
           install: false
           command: npm run api:run-all
 
-      - name: 📦 Instalar utilitário zip
-        run: sudo apt-get update && sudo apt-get install -y zip
+      - name: 📦 Instalar utilitário zip (se necessário)
+        run: |
+          dpkg -s zip || sudo apt-get update && sudo apt-get install -y zip
 
       - name: 📦 Compactar Relatório Mochawesome
-        run: zip -r api/cypress/reports.zip api/cypress/reports/
+        run: |
+          cd api/cypress
+          zip -r ../../mochawesome-report.zip reports/
 
       - name: 🔍 Verificar se o relatório foi gerado
-        run: ls -lh api/cypress/reports.zip
+        run: ls -lh mochawesome-report.zip
 
       - name: 📤 Upload do Relatório Mochawesome
         uses: actions/upload-artifact@v4
         with:
           name: mochawesome-report
-          path: api/cypress/reports.zip
+          path: mochawesome-report.zip
           retention-days: 7
