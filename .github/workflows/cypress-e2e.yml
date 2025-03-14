@@ -1,0 +1,46 @@
+name: Development e2e Api-Web
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  api-tests:
+    runs-on: ubuntu-latest
+    env:
+      EMAIL_ADMIN: ${{ secrets.EMAIL_ADMIN }}
+      PASSWORD_ADMIN: ${{ secrets.PASSWORD_ADMIN }}
+
+    steps:
+      - name: 🛎️ Checkout do código
+        uses: actions/checkout@v3
+
+      - name: 🐳 Configurar Docker e rodar serviços
+        run: docker-compose up --build -d
+
+      - name: ⏳ Aguardar container ficar pronto
+        run: sleep 10
+
+      - name: 🛠️ Instalar dependências dentro do container
+        run: |
+          docker exec ntt-challenge yarn install
+
+      - name: 🧪 Executar Testes de API (Cypress + Allure)
+        run: |
+          docker exec -e EMAIL_ADMIN="${{ secrets.EMAIL_ADMIN }}" \
+                      -e PASSWORD_ADMIN="${{ secrets.PASSWORD_ADMIN }}" \
+                      ntt-challenge yarn api:test:ci
+
+      - name: 📊 Gerar Relatório Allure
+        run: |
+          docker exec ntt-challenge yarn allure generate --clean
+
+      - name: 📤 Upload do Relatório Allure como Artefato
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: api/allure-report
+
+      - name: 📦 Parar e remover containers
+        if: always()
+        run: docker-compose down
