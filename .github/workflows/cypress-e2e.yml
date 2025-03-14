@@ -14,6 +14,11 @@ jobs:
     steps:
       - name: 🛎️ Checkout do código
         uses: actions/checkout@v3
+      
+      - name: 🛠️ Instalar Docker Compose  # 🔥 Novo passo para instalar docker-compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
 
       - name: 🐳 Configurar Docker e rodar serviços
         run: docker-compose up --build -d
