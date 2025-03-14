@@ -536,7 +536,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cli-table3@npm:~0.6.1":
+"cli-table3@npm:~0.6.5":
   version: 0.6.5
   resolution: "cli-table3@npm:0.6.5"
   dependencies:
@@ -658,8 +658,8 @@ __metadata:
   linkType: hard
 
 "cypress@npm:^14.1.0":
-  version: 14.1.0
-  resolution: "cypress@npm:14.1.0"
+  version: 14.2.0
+  resolution: "cypress@npm:14.2.0"
   dependencies:
     "@cypress/request": ^3.0.7
     "@cypress/xvfb": ^1.2.4
@@ -674,7 +674,7 @@ __metadata:
     check-more-types: ^2.24.0
     ci-info: ^4.1.0
     cli-cursor: ^3.1.0
-    cli-table3: ~0.6.1
+    cli-table3: ~0.6.5
     commander: ^6.2.1
     common-tags: ^1.8.0
     dayjs: ^1.10.4
@@ -706,7 +706,7 @@ __metadata:
     yauzl: ^2.10.0
   bin:
     cypress: bin/cypress
-  checksum: bb0c2897ed2709b90aebea81879dc77dd58283ffc9ad2a8f0c105b14c41ee6dd2eab8ca34793daea991e7e26171aec20221202af6ccb277d54ad3a30aa774f8c
+  checksum: 3aad74ceb53d61a0ec95ef6831366846363eba39087ffaea2e4c9fc8d196a6c66795fcb28b676b41c9743bd6b4fd55f817a45bd7a4b085e9858d27a206f7d3aa
   languageName: node
   linkType: hard
 
