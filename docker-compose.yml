@@ -1,9 +1,9 @@
 version: "3.8"
 
 services:
-  ntt-challenge:
+  api-tests:
     build: .
-    container_name: ntt-challenge
+    container_name: ntt-challenge-api
     volumes:
       - .:/app
       - /app/node_modules
@@ -14,4 +14,19 @@ services:
       - NODE_ENV=development
     mem_limit: 4g
     memswap_limit: 4g
-    command: ["npx", "cypress", "run"]
+    command: ["yarn", "api:test"]
+
+  web-tests:
+    build: .
+    container_name: ntt-challenge-web
+    volumes:
+      - .:/app
+      - /app/node_modules
+    working_dir: /app/web
+    env_file:
+      - ./web/.env
+    environment:
+      - NODE_ENV=development
+    mem_limit: 4g
+    memswap_limit: 4g
+    command: ["yarn", "web:test"]
