@@ -51,11 +51,16 @@ jobs:
         run: |
           echo "EMAIL_ADMIN=${{ secrets.EMAIL_ADMIN }}" > web/.env
           echo "PASSWORD_ADMIN=${{ secrets.PASSWORD_ADMIN }}" >> web/.env
-          echo "EMAIL_ADMIN=${{ secrets.EMAIL_USER }}" > web/.env
-          echo "PASSWORD_ADMIN=${{ secrets.PASSWORD_USER }}" >> web/.env
+          echo "EMAIL_USER=${{ secrets.EMAIL_USER }}" > web/.env
+          echo "PASSWORD_USER=${{ secrets.PASSWORD_USER }}" >> web/.env
 
       - name: 🧪 Rodar Testes Web (Electron)
         uses: cypress-io/github-action@v5
+        env:
+          EMAIL_ADMIN: ${{ secrets.EMAIL_ADMIN }}
+          PASSWORD_ADMIN: ${{ secrets.PASSWORD_ADMIN }}
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          PASSWORD_USER: ${{ secrets.PASSWORD_USER }}
         with:
           browser: electron
           install: false
