@@ -1,10 +1,26 @@
+# Node modules
 node_modules/
 api/node_modules/
+
+# Ambiente
 api/.env
+web/.env
+
+# Cypress - API
 api/cypress/videos/
 api/cypress/screenshots/
-api/.DS_Store
+api/cypress/reports/*
+
+# Cypress - Web
+web/cypress/videos/
+web/cypress/screenshots/
+web/cypress/reports/*
+
+# Sistema
 .DS_Store
+**/.DS_Store
+
+# Yarn
 .yarn/*
 !.yarn/releases
 !.yarn/plugins
@@ -12,8 +28,7 @@ api/.DS_Store
 .pnp.*
 .pnp.js
 install-state.gz
-cypress-npm-*.*
-api/cypress/reports/*
-**/.DS_Store
-package-lock.json
 
+# Cypress cache
+cypress-npm-*.*
+package-lock.json
