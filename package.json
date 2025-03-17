@@ -11,7 +11,13 @@
     "api:test:ci": "cd api && npx cypress run --browser electron --headless",
     "api:test:mochawesome": "cd api && npx cypress run --reporter ../../node_modules/mochawesome --reporter-options reportDir=cypress/reports,overwrite=false,html=false,json=true",
     "api:generate-report": "cd api && npx mochawesome-merge cypress/reports/mochawesome-*.json > cypress/reports/merged.json && npx mochawesome-report-generator -f index -o cypress/reports cypress/reports/merged.json",
-    "api:run-all": "npm run api:test:mochawesome && npm run api:generate-report"
+    "api:run-all": "npm run api:test:mochawesome && npm run api:generate-report",
+    "web:test": "cd web && npx cypress run --reporter ../../node_modules/mochawesome --reporter-options reportDir=cypress/reports,overwrite=false,html=false,json=true",
+    "web:open": "cd web && npx cypress open",
+    "web:test:mochawesome": "cd web && npx cypress run --reporter ../../node_modules/mochawesome --reporter-options reportDir=cypress/reports,overwrite=false,html=false,json=true",
+    "web:generate-report": "cd web && npx mochawesome-merge cypress/reports/mochawesome-*.json > cypress/reports/merged.json && npx mochawesome-report-generator -f index -o cypress/reports cypress/reports/merged.json",
+    "web:run-all": "npm run web:test:mochawesome && npm run web:generate-report",
+    "web:test:grep": "cd web && npx cypress run --env grepFilterSpecs=true,grepOmitFiltered=true,grepTags=$npm_config_tag --reporter ../../node_modules/mochawesome --reporter-options reportDir=cypress/reports,overwrite=false,html=false,json=true"
   },
   "keywords": [],
   "author": "",
