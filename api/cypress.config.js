@@ -17,6 +17,10 @@ module.exports = defineConfig({
     inlineAssets: true,
     saveJson: true
   },
+  env: {
+    grepFilterSpecs: true,
+    grepOmitFiltered: true,
+  },
   e2e: {
     baseUrl: "https://serverest.dev",
     video: false,
@@ -25,6 +29,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       config.env.email_admin = process.env.EMAIL_ADMIN;
       config.env.password_admin = process.env.PASSWORD_ADMIN;
+      require('cypress-grep/src/plugin')(config);
       return config;
     },
   },

@@ -5,7 +5,7 @@
   "scripts": {
     "api:test": "cd api && npx cypress run",
     "api:open": "cd api && npx cypress open",
-    "api:test:grep": "cd api && npx cypress run --env grepTags=",
+    "api:test:grep": "cd api && npx cypress run --env grepFilterSpecs=true,grepOmitFiltered=true,grepTags=$npm_config_tag --reporter ../../node_modules/mochawesome --reporter-options reportDir=cypress/reports,overwrite=false,html=false,json=true",
     "api:test:login": "cd api && npx cypress run --env grepTags=@login-admin",
     "api:test:usuarios": "cd api && npx cypress run --env grepTags=@criar-usuario",
     "api:test:ci": "cd api && npx cypress run --browser electron --headless",
