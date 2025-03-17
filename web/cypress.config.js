@@ -22,13 +22,15 @@ module.exports = defineConfig({
     grepOmitFiltered: true,
   },
   e2e: {
-    baseUrl: "https://serverest.dev",
+    baseUrl: "https://front.serverest.dev",
     video: false,
     screenshotOnRunFailure: true,
     defaultCommandTimeout: 10000,
     setupNodeEvents(on, config) {
       config.env.email_admin = process.env.EMAIL_ADMIN;
       config.env.password_admin = process.env.PASSWORD_ADMIN;
+      config.env.email_user = process.env.EMAIL_USER;
+      config.env.password_user = process.env.PASSWORD_USER;
       require('cypress-grep/src/plugin')(config);
       return config;
     },
